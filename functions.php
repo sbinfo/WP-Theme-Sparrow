@@ -25,4 +25,5 @@ function sparrow_scripts() {
 
 function sparrow_menu() {
     register_nav_menu( 'primary', 'Primary Menu' );
+    register_nav_menu( 'footer-menu', 'Footer Menu' );
 }
