@@ -3,7 +3,20 @@
 add_action( 'wp_enqueue_scripts', 'sparrow_styles' );
 add_action('wp_footer', 'sparrow_scripts');
 add_action('after_setup_theme', 'sparrow_menu');
+add_action( 'widgets_init', 'sparrow_register_widgets' );
 
+function sparrow_register_widgets(){
+    register_sidebar( array(
+        'name'          => __('Right Sidebar'),
+        'id'            => "right_sidebar",
+        'description'   => '',
+        'class'         => '',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => "</div>\n",
+        'before_title'  => '<h5 class="widgettitle">',
+        'after_title'   => "</h5>\n",
+    ) );
+}
 
 function sparrow_styles() {
     // styles
