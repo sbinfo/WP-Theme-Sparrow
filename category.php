@@ -1,4 +1,4 @@
-<?php get_header() ?>
+<?php get_header()?>
 
 <!-- Page Title
   ================================================== -->
@@ -22,127 +22,35 @@
 
         <div id="primary" class="eight columns">
 
-            <article class="post">
+            <?php if (have_posts()) {
+	while (have_posts()) {the_post();?>
+                    <article class="post">
 
-                <div class="entry-header cf">
+                        <div class="entry-header cf">
 
-                    <h1><a href="single.html" title="">Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin auctor.</a></h1>
+                            <h1><a href="<?php the_permalink()?>"><?php the_title()?></a></h1>
+                            <p class="post-meta">
+                                <time class="date" datetime="<?php the_time('Y-m-d')?>"><?php the_time('M d, Y')?></time>
+                                /
+                                <span class="categories">
+                                    <?php the_tags("", " / ")?>
+                                </span>
+                            </p>
 
-                    <p class="post-meta">
+                        </div>
 
-                        <time class="date" datetime="2014-01-14T11:24">Jan 14, 2014</time>
-                        /
-                        <span class="categories">
-                     <a href="#">Design</a> /
-                     <a href="#">User Inferface</a> /
-                     <a href="#">Web Design</a>
-                     </span>
+                        <div class="post-thumb">
+                            <a href="<?php the_permalink()?>" title=""><?php the_post_thumbnail('post-thumb')?></a>
+                        </div>
 
-                    </p>
+                        <div class="post-content">
+                            <?php the_excerpt()?>
+                        </div>
 
-                </div>
-
-                <div class="post-thumb">
-                    <a href="single.html" title=""><img src="images/post-image/post-image-1300x500-01.jpg" alt="post-image" title="post-image"></a>
-                </div>
-
-                <div class="post-content">
-
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                        nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                        cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
-                        ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. </p>
-
-                </div>
-
-            </article> <!-- post end -->
-
-            <article class="post">
-
-                <div class="entry-header cf">
-
-                    <h1><a href="single.html" title="">Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin auctor.</a></h1>
-
-                    <p class="post-meta">
-
-                        <time class="date" datetime="2014-01-14T11:24">Jan 14, 2013</time>
-                        /
-                        <span class="categories">
-                     <a href="#">Design</a> /
-                     <a href="#">User Inferface</a> /
-                     <a href="#">Web Design</a>
-                     </span>
-
-                    </p>
-
-                </div>
-
-                <div class="post-thumb">
-                    <a href="single.html" title=""><img src="images/post-image/post-image-1300x500-02.jpg" alt="post-image" title="post-image"></a>
-                </div>
-
-                <div class="post-content">
-
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                        nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                        cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
-                        ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. </p>
-
-                </div>
-
-            </article> <!-- post end -->
-
-            <article class="post">
-
-                <div class="entry-header cf">
-
-                    <h1><a href="single.html" title="">Proin gravida nibh vel velit auctor aliquet Aenean sollicitudin auctor.</a></h1>
-
-                    <p class="post-meta">
-
-                        <time class="date" datetime="2014-01-14T11:24">Jan 14, 2014</time>
-                        /
-                        <span class="categories">
-                     <a href="#">Design</a> /
-                     <a href="#">User Inferface</a> /
-                     <a href="#">Web Design</a>
-                     </span>
-
-                    </p>
-
-                </div>
-
-                <div class="post-thumb">
-                    <a href="single.html" title=""><img src="images/post-image/post-image-1300x500-03.jpg" alt="post-image" title="post-image"></a>
-                </div>
-
-                <div class="post-content">
-
-                    <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor,
-                        nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate
-                        cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a
-                        ornare odio. Sed non  mauris vitae erat consequat auctor eu in elit. </p>
-
-                </div>
-
-            </article> <!-- post end -->
-
-            <!-- Pagination -->
-            <nav class="col full pagination">
-                <ul>
-                    <li><span class="page-numbers prev inactive">Prev</span></li>
-                    <li><span class="page-numbers current">1</span></li>
-                    <li><a href="#" class="page-numbers">2</a></li>
-                    <li><a href="#" class="page-numbers">3</a></li>
-                    <li><a href="#" class="page-numbers">4</a></li>
-                    <li><a href="#" class="page-numbers">5</a></li>
-                    <li><a href="#" class="page-numbers">6</a></li>
-                    <li><a href="#" class="page-numbers">7</a></li>
-                    <li><a href="#" class="page-numbers">8</a></li>
-                    <li><a href="#" class="page-numbers">9</a></li>
-                    <li><a href="#" class="page-numbers next">Next</a></li>
-                </ul>
-            </nav>
+                    </article> <!-- post end -->
+            <?php } // end while ?>
+                <?php the_posts_pagination()?>
+           <?php } // end if ?>
 
         </div> <!-- Primary End-->
 
@@ -150,7 +58,7 @@
 
             <aside id="sidebar">
 
-                <?php get_sidebar() ?>
+                <?php get_sidebar()?>
 
             </aside>
 
@@ -160,4 +68,4 @@
 
 </div> <!-- Content End-->
 
-<?php get_footer() ?>
+<?php get_footer()?>

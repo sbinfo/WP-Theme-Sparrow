@@ -5,6 +5,7 @@ add_action('wp_footer', 'sparrow_scripts');
 add_action('after_setup_theme', 'sparrow_menu');
 add_action( 'widgets_init', 'sparrow_register_widgets' );
 
+
 function sparrow_register_widgets(){
     register_sidebar( array(
         'name'          => __('Right Sidebar'),
@@ -39,4 +40,38 @@ function sparrow_scripts() {
 function sparrow_menu() {
     register_nav_menu( 'primary', 'Primary Menu' );
     register_nav_menu( 'footer-menu', 'Footer Menu' );
+}
+
+// add theme support
+add_theme_support( 'title-tag' );
+add_theme_support( 'post-thumbnails', array( 'post' ) );
+
+
+// register size
+add_image_size( 'post-thumb', 1300, 500, true );
+
+// filters
+add_filter( 'excerpt_length', function(){
+	return 40;
+} );
+
+add_filter('excerpt_more', function($more) {
+	return '';
+});
+
+add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
+function my_navigation_template( $template, $class ){
+	return '
+	<nav class="navigation %1$s" role="navigation">
+		<div class="nav-links">%3$s</div>
+	</nav>    
+	';
+}
+
+add_filter( 'excerpt_more', 'new_excerpt_more' );
+function new_excerpt_more( $more ){
+	global $post;
+	if(is_front_page()) {
+        return '<a href="'. get_permalink($post) . '">Read More <i class="fa fa-arrow-circle-o-right"></i></a>';
+    }
 }
